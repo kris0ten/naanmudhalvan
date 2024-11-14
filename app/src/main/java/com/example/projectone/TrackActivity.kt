@@ -63,30 +63,33 @@ fun ListListScopeSample(timeLogs: List<TimeLogDatabaseHelper.TimeLog>) {
             .alpha(0.3F),
     )
 
-    Text(text = "Sleep Tracking", modifier = Modifier.padding(top = 16.dp, start = 106.dp ), color = Color.White, fontSize = 24.sp)
+    Text(
+        text = "Sleep Tracking",
+        modifier = Modifier.padding(top = 16.dp, start = 106.dp),
+        color = Color.White,
+        fontSize = 24.sp
+    )
     Spacer(modifier = Modifier.height(30.dp))
+
     LazyRow(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 56.dp),
-
         horizontalArrangement = Arrangement.SpaceBetween
-    ){
+    ) {
         item {
-
             LazyColumn {
                 items(timeLogs) { timeLog ->
                     Column(modifier = Modifier.padding(16.dp)) {
-                        //Text("ID: ${timeLog.id}")
                         Text("Start time: ${formatDateTime(timeLog.startTime)}")
                         Text("End time: ${timeLog.endTime?.let { formatDateTime(it) }}")
                     }
                 }
             }
         }
-
-        }
     }
+}
+
 
 private fun formatDateTime(timestamp: Long): String {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
